@@ -7,7 +7,7 @@ end
 y=filter([1 -0.9375],1,y);
 
 %  frameTime 每帧的时间 单位ms
-frameTime = 15;
+frameTime = 20;
 %分幀
 frameSize = floor(fs*frameTime/1000);
 overLap = floor(frameSize/3);
@@ -20,13 +20,18 @@ tmp2 = x(:,2:end);
 sign = tmp1.*tmp2 < 0 ;
 diff = abs(tmp1-tmp2) > 0.02;
 zcr = sum(sign.*diff,2);
+
 %短时能量
 shortEnergy = sum(abs(x), 2);
-% shotEnergy = 10*log10( sum(x(:,1:end).^2,2)+realmin);
+% shortEnergy = 10*log10( sum(x(:,1:end).^2,2)+realmin);
 
-%端点检测
-[x1,x2] = vad1(x,zcr,shortEnergy);
-
+% %端点检测
+[x1,x2] = vad2(x,zcr,shortEnergy);
+% % for i=x1:x2
+% %     if shortEnergy(i) == 0 
+% %         fprintf('debuge:energy=0!');
+% %     end
+% % end
 
 
 if(plot_opt == true)

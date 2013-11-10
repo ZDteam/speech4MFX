@@ -1,4 +1,4 @@
-function ccc = mfcc(x,fs)
+function ccc = mfcc(x,fs,shortEnergy)
 
 [nf,frameSize] = size(x);
 
@@ -28,15 +28,21 @@ w = w/max(w);
 % xx=enframe(xx,256,80);
 
 % 计算每帧的MFCC参数
-
+j=1;
 for i=1:nf
   y = x(i,:);
+  if y(:)==0
+    m(j,:)=0;
+    j=j+1;
+    continue;
+  end
   s = y' .* hamming(frameSize);
   t = abs(fft(s));
   t = t.^2;
   c1=dctcoef * log(bank * t(1:1+floor(frameSize/2)));
   c2 = c1.*w';
-  m(i,:)=c2';
+  m(j,:)=c2';
+  j = j+1;
 end
 
 %差分系数
@@ -56,7 +62,7 @@ dtm = dtm / 3;
 % end
 % dtm2 = dtm2 / 3;
 %合并mfcc参数和一阶差分mfcc参数
-ccc = [m dtm];
+ccc = [m dtm ];
 %去除首尾两帧，因为这两帧的一阶差分参数为0
 ccc = ccc(3:size(m,1)-2,:);
 

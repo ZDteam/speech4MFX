@@ -31,5 +31,5 @@ end
 function dist =Dist(s1,s2)
 %     disp(s1);
 %     disp(s2);
-    dist = sqrt(sum((s1-s2).^2));
+    dist = sum((s1-s2).^2);
 end

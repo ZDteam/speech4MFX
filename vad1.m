@@ -3,11 +3,11 @@ function [ x1,x2 ] = vad1( x,zcr,amp )
 %   Detailed explanation goes here
 
 amp1 = 10;
-amp2 = 2;
+amp2 = 1.5;
 zcr1 = 10;
-zcr2 = 5;
+zcr2 = 4;
 
-maxsilence = 12;  % 10*15ms = 150ms
+maxsilence = 40;  % 10*15ms = 150ms
 minlen  = 20;    % 15*15ms = 225ms
 status  = 0;
 count   = 0;
@@ -58,7 +58,7 @@ x2 = len;
 status = 0;
 count   = 0;
 silence = 0;
-maxsilence2 = 20;
+maxsilence2 = 40;
 for n=len:-1:1
 
    switch status
