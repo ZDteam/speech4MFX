@@ -4,12 +4,11 @@ function main()
 % clc;
  open_multiple_thread();
 % clear all;
-% WARNING('OFF')
+ warning off
 
-%  train_dir = '模仿秀实验歌曲/十年/原唱干声/';
-%  test_dir =  '模仿秀实验歌曲/十年/十年 (';
-train_dir = '模仿秀实验歌曲/nn/原唱干声/';
-test_dir =  '模仿秀实验歌曲/nn/';
+song_name = 'n';
+train_dir = 'songs/n/origin/';
+test_dir =  'songs/n/';
 
 feature_mat = train(train_dir);
 
