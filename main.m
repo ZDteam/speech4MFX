@@ -2,17 +2,19 @@ function main()
 
  close all;
 % clc;
- open_multiple_thread();
+%  open_multiple_thread();
 % clear all;
- warning off
+warning off
 
 song_name = 'n';
-train_dir = 'songs/n/origin/';
-test_dir =  'songs/n/';
+test_people = 5;
+
+train_dir = ['songs/',song_name,'/origin/'];
+test_dir =  ['songs/',song_name,'/'];
 
 feature_mat = train(train_dir);
 
-test(test_dir,feature_mat);
+test(test_dir,test_people,feature_mat);
 
 
 

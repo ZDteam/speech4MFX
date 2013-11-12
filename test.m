@@ -1,4 +1,4 @@
-function test( test_set,feature_mat )
+function test( test_set,test_people,feature_mat )
 %TEST Summary of this function goes here
 %   Detailed explanation goes her
 
@@ -21,7 +21,7 @@ end
 
 
 fprintf('======================== testing =========================\n');
-for p = 1:5
+for p = 1:test_people
     %     test_dir = [test_set,num2str(p),')/'];
     test_dir = [test_set,num2str(p),'/'];
     files = dir(test_dir);
@@ -33,12 +33,12 @@ for p = 1:5
     dist_sum =zeros(1,1);
     
     %     seg_ps = zeros(seg_num,1);
-    
+    fprintf('#####  %dth people : \n',p);
     for i=1:n
         waveFile = [test_dir,num2str(i),'.wav'];
         [y,fs,nbits] = wavread(waveFile);
 %             fprintf('%d %d\n',fs,nbits);
-             wavplay(y,fs);
+            wavplay(y,fs);
         [x,zcr,shortEnergy] = pre_process(waveFile,y,fs,nbits);
         
         feature =  feature_extract(x,fs,zcr,shortEnergy);
@@ -61,7 +61,7 @@ for p = 1:5
             end
         end
         
-         fprintf('%dth people %dth sentence score = %.2f\n',p,i,score);
+        fprintf('%dth sentence score = %.2f\n',i,score);
         
         %           fprintf('%dth people %dth sentence: dist= %f\n',p,i,dist);
         %         dists(i) = dist;
@@ -100,6 +100,7 @@ for p = 1:5
     %     for i=1:seg_num
     %         fprintf('%d - %d:%d\n',dist_seg(i),dist_seg(i+1),seg_ps(i));
     %     end
+    fprintf('##################\n');
 end
 fprintf('======================== test end ========================\n');
 
