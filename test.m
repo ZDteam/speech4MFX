@@ -1,4 +1,4 @@
-function test( test_set,test_people,feature_mat )
+function test( test_set,feature_mat )
 %TEST Summary of this function goes here
 %   Detailed explanation goes her
 
@@ -19,26 +19,30 @@ end
 % max_dist = 100000;
 % cof_k = -90/max_dist;
 
-
+ps = dir(test_set);
+test_people = size(ps,1)-2 ;     
 fprintf('======================== testing =========================\n');
+
 for p = 1:test_people
     %     test_dir = [test_set,num2str(p),')/'];
-    test_dir = [test_set,num2str(p),'/'];
+
+    
+    test_dir = [test_set,ps(p+2).name,'/'];
     files = dir(test_dir);
-    [n,~] = size(files);
-    n = n-2;
+    n = size(files,1)-2;
+    
     dists = zeros(n,1);
     final_score = 0;
     dist = zeros(1,1);
     dist_sum =zeros(1,1);
     
     %     seg_ps = zeros(seg_num,1);
-    fprintf('#####  %dth people : \n',p);
+    fprintf('#####  %s : \n',ps(p+2).name);
     for i=1:n
         waveFile = [test_dir,num2str(i),'.wav'];
         [y,fs,nbits] = wavread(waveFile);
 %             fprintf('%d %d\n',fs,nbits);
-            wavplay(y,fs);
+%             wavplay(y,fs);
         [x,zcr,shortEnergy] = pre_process(waveFile,y,fs,nbits);
         
         feature =  feature_extract(x,fs,zcr,shortEnergy);
@@ -95,7 +99,7 @@ for p = 1:test_people
     %         title([num2str(p),'th people']);
     
 %     fprintf('%dthpeople avg dist = %.2f\n',p,dist);
-    fprintf('%dthpeople final score = %.2f\n',p,final_score);
+    fprintf('%s final score = %.2f\n',ps(p+2).name,final_score);
     %     fprintf('%dth people:\n');
     %     for i=1:seg_num
     %         fprintf('%d - %d:%d\n',dist_seg(i),dist_seg(i+1),seg_ps(i));

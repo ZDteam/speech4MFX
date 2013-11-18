@@ -7,4 +7,4 @@ for i=3:len-2
 end
 v = v/3;
 
-v = v(3:len-2,:);
+% v = v(3:len-2,:);

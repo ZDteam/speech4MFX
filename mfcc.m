@@ -64,5 +64,5 @@ dtm = dtm / 3;
 %合并mfcc参数和一阶差分mfcc参数
 ccc = [m dtm ];
 %去除首尾两帧，因为这两帧的一阶差分参数为0
-ccc = ccc(3:size(m,1)-2,:);
+% ccc = ccc(3:size(m,1)-2,:);
 
