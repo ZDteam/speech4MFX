@@ -7,7 +7,7 @@ end
 y=filter([1 -0.9375],1,y);
 
 %  frameTime 每帧的时间 单位ms
-frameTime = 20;
+frameTime = 15;
 %分幀
 frameSize = floor(fs*frameTime/1000);
 overLap = floor(frameSize/3);

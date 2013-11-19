@@ -1,5 +1,7 @@
 function [v] = feature_extract(x,fs,zcr,shortEnergy)
     
+    v= mfcc(x,fs,shortEnergy);
+    return;
       v1 =unify( get_det(zcr),0,100);
 %     v2 = get_det(shortEnergy);
 %     v2 =unify( shortEnergy );

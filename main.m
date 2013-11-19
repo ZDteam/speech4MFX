@@ -2,7 +2,7 @@ function main(song_name)
 
  close all;
 % clc;
-%  open_multiple_thread();
+ open_multiple_thread();
 % clear all;
 warning off
 
@@ -11,7 +11,7 @@ if nargin<1
 
 end
 
-fprintf('song_name: %s\n',song_name);
+
 train_dir = ['songs/',song_name,'/origin/'];
 if ~isdir(train_dir)
     fprintf('train_set does not exit!\n');
@@ -23,7 +23,7 @@ if ~isdir(test_dir)
     return;
 end
 feature_mat = train(train_dir);
-
+fprintf('song_name: %s trained successfully\n',song_name);
 test(test_dir,feature_mat);
 
 

@@ -4,7 +4,7 @@ function ccc = mfcc(x,fs,shortEnergy)
 
 % 归一化mel滤波器组系数
 filter_num = 24; %三角滤波器个数
-coef_num = 12; %阶数
+coef_num = 16; %阶数
 bank=melbankm(filter_num,frameSize,fs,0,0.5,'m');
 % bank=full(bank);
 % bank=bank/max(bank(:));
